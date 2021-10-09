@@ -12,6 +12,7 @@ class BaseElement(NodeMixin):
         self.name = d.name.split('/')[-1]
         self.image = Image.fromarray(d[:])
         self.attrs = dict(d.attrs)
+        self.__H, self.__x, self.__y = [None] * 3
 
     def _normalize(self):
         M = self.root.base_size
@@ -24,25 +25,34 @@ class BaseElement(NodeMixin):
 
     @property
     def H(self):
-        if np.isnan(self.l_H):
-            return self.parent.H
-        H_ub = min(self.parent.H, self.parent.W / self.aspect_ratio,
-                   self.attrs['H'] * H_MAX)
-        return self.l_H * (H_ub - self.H_lb) + self.H_lb
+        if self.__H is None:
+            if np.isnan(self.l_H):
+                self.__H = self.parent.H
+            else:
+                H_ub = min(self.parent.H, self.parent.W / self.aspect_ratio,
+                           self.attrs['H'] * H_MAX)
+                self.__H = self.l_H * (H_ub - self.H_lb) + self.H_lb
+        return self.__H
 
     @property
     def x(self):
-        if np.isnan(self.l_x):
-            return self.parent.x
-        x_ub = self.parent.x + self.parent.W - self.W
-        return self.l_x * (x_ub - self.parent.x) + self.parent.x
+        if self.__x is None:
+            if np.isnan(self.l_x):
+                self.__x = self.parent.x
+            else:
+                x_ub = self.parent.x + self.parent.W - self.W
+                self.__x = self.l_x * (x_ub - self.parent.x) + self.parent.x
+        return self.__x
 
     @property
     def y(self):
-        if np.isnan(self.l_y):
-            return self.parent.y
-        y_ub = self.parent.y + self.parent.H - self.H
-        return self.l_y * (y_ub - self.parent.y) + self.parent.y
+        if self.__y is None:
+            if np.isnan(self.l_y):
+                self.__y = self.parent.y
+            else:
+                y_ub = self.parent.y + self.parent.H - self.H
+                self.__y = self.l_y * (y_ub - self.parent.y) + self.parent.y
+        return self.__y
 
     @property
     def W(self):
