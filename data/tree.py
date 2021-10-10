@@ -13,6 +13,9 @@ class BaseElement(NodeMixin):
         self.image = Image.fromarray(d[:])
         self.attrs = dict(d.attrs)
         self.__H, self.__x, self.__y = [None] * 3
+        for k, v in self.attrs.items():
+            if type(v) == np.ndarray:
+                self.attrs[k] = list(v)
 
     def _normalize(self):
         M = self.root.base_size
@@ -20,38 +23,38 @@ class BaseElement(NodeMixin):
         x0, x1 = x0 / M, x1 / M
         y0, y1 = y0 / M, y1 / M
         self.attrs['nbox'] = [x0, y0, x1, y1]
-        self.attrs['H'], self.attrs['W'] = y1 - y0, x1 - x0
+        self.__H_max = (y1 - y0) * H_MAX
         self.aspect_ratio = (x1 - x0) / (y1 - y0)
 
     @property
     def H(self):
         if self.__H is None:
-            if np.isnan(self.l_H):
-                self.__H = self.parent.H
-            else:
-                H_ub = min(self.parent.H, self.parent.W / self.aspect_ratio,
-                           self.attrs['H'] * H_MAX)
+            if np.isfinite(self.l_H):
+                H_ub = min(self.parent.H, self.__H_max,
+                           self.parent.W / self.aspect_ratio)
                 self.__H = self.l_H * (H_ub - self.H_lb) + self.H_lb
+            else:
+                self.__H = self.parent.H
         return self.__H
 
     @property
     def x(self):
         if self.__x is None:
-            if np.isnan(self.l_x):
-                self.__x = self.parent.x
-            else:
+            if np.isfinite(self.l_x):
                 x_ub = self.parent.x + self.parent.W - self.W
                 self.__x = self.l_x * (x_ub - self.parent.x) + self.parent.x
+            else:
+                self.__x = self.parent.x
         return self.__x
 
     @property
     def y(self):
         if self.__y is None:
-            if np.isnan(self.l_y):
-                self.__y = self.parent.y
-            else:
+            if np.isfinite(self.l_y):
                 y_ub = self.parent.y + self.parent.H - self.H
                 self.__y = self.l_y * (y_ub - self.parent.y) + self.parent.y
+            else:
+                self.__y = self.parent.y
         return self.__y
 
     @property
@@ -62,13 +65,14 @@ class BaseElement(NodeMixin):
 class RootElement(BaseElement):
     def __init__(self, d):
         super().__init__(d)
-        x0, y0, x1, y1 = d.attrs['box']
+        x0, y0, x1, y1 = self.attrs['box']
         self.base_size = float(max(y1 - y0, x1 - x0))
         self._normalize()
 
     @property
     def H(self):
-        return self.attrs['H']
+        _, y0, _, y1 = self.attrs['nbox']
+        return y1 - y0
 
     @property
     def x(self):

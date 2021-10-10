@@ -2,4 +2,3 @@ h5py
 numpy
 pillow
 anytree
-tqdm
