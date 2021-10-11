@@ -41,6 +41,7 @@
                         <a href="https://sites.google.com/view/kyamagu/" class="mx-2">Kota Yamaguchi</a>
                         <a href="https://esslab.jp/~ess/en/" class="mx-2">Edgar Simo-Serra</a>
                     </h3>
+                    <img src="assets/teaser.png" width="90%" class="py-4"></img>
                 </header>
                 <div class="py-2">
                     <h2>Abstract</h2>
@@ -76,6 +77,40 @@
                         <li><a href="https://github.com/ktrk115/web_layout/">Dataset</a></li>
                         <li><a href="assets/supplemental.zip">Supplemental materials (zip, 15MB)</a></li>
                     </ul>
+                </div>
+                <div class="py-2">
+                    <h2>Dataset</h2>
+                    <p>Our dataset provides pixel-perfect images for each element, which allows visual evaluation of the rearranged elements.</p>
+                    <div class="text-center m-4">
+                        <img class="mb-4" src="assets/rico.png" style="width: 60%"></img>
+                        <img src="assets/webforest.png" style="width: 55%"></img>
+                    </div>
+                    <p>We obtain the images for each element by automatic processing of visibility control and screenshot.</p>
+                    <div class="text-center m-4">
+                        <video src="assets/page2layers.mp4" controls muted autoplay loop style="width: 60%"></video>
+                    </div>
+                </div>
+                <div class="py-2">
+                    <h2>Method</h2>
+                    <p>We search for a layout tree where the relations between the elements are globally plausible.</p>
+                    <div class="text-center m-4">
+                        <video src="assets/tree_optimization.mp4" controls muted autoplay loop style="width: 90%"></video>
+                    </div>
+                    <p>We define the position and size of each element relatively to its parent element.</p>
+                    <div class="text-center m-4">
+                        <img src="assets/parameterization.png" style="width: 70%"></img>
+                    </div>
+                    <p>Our layout model consists of several energy terms that use design heuristics and the layout tree.</p>
+                    <div class="text-center m-4">
+                        <img src="assets/energy_terms.png" style="width: 65%"></img>
+                    </div>
+                </div>
+                <div class="py-2">
+                    <h2>Interface</h2>
+                    <p>We have developed an interactive design tool to validate our method. Please see the supplemental materials for details.</p>
+                    <div class="text-center m-4">
+                        <video src="assets/interface.mp4" controls muted autoplay loop style="width: 70%"></video>
+                    </div>
                 </div>
                 <div class="py-2">
                     <h2>BibTex</h2>
