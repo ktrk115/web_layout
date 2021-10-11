@@ -71,13 +71,14 @@ GNU AGPLv3
 If this repository helps your research, please consider citing our paper.
 
 ```
-@inproceedings{Kikuchi2021,
+@article{Kikuchi2021,
     title = {Modeling Visual Containment for Web Page Layout Optimization},
     author = {Kotaro Kikuchi and Mayu Otani and Kota Yamaguchi and Edgar Simo-Serra},
-    booktitle = {Pacific Graphics},
-    series = {PG '21},
-    volume = {},
+    journal = {Computer Graphics Forum},
+    volume = {40},
+    number = {7},
+    pages = {},
     year = {2021},
-    pages = {}
+    doi = {}
 }
 ```
