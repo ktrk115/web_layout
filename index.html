@@ -28,6 +28,17 @@
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
         />
         <link rel="stylesheet" href="https://ktrk115.github.io/css/main.css" />
+        <style>
+            @media screen and (max-width: 520px) {
+                img { width: 100%; }
+                video { width: 100%; }
+            }
+            @media screen and (min-width: 520px) {
+                #dataset_comparison { padding: 0 4em; }
+                img { width: 70%; }
+                video { width: 70%; }
+            }
+        </style>
     </head>
     <body>
         <main style="margin-top: 20px;">
@@ -41,7 +52,7 @@
                         <a href="https://sites.google.com/view/kyamagu/" class="mx-2">Kota Yamaguchi</a>
                         <a href="https://esslab.jp/~ess/en/" class="mx-2">Edgar Simo-Serra</a>
                     </h3>
-                    <img src="assets/teaser.png" width="90%" class="py-4"></img>
+                    <img src="assets/teaser.png" style="width: 90%" class="py-4"></img>
                 </header>
                 <div class="py-2">
                     <h2>Abstract</h2>
@@ -81,35 +92,35 @@
                 <div class="py-2">
                     <h2>Dataset</h2>
                     <p>Our dataset provides pixel-perfect images for each element, which allows visual evaluation of the rearranged elements.</p>
-                    <div class="text-center m-4">
-                        <img class="mb-4" src="assets/rico.png" style="width: 60%"></img>
-                        <img src="assets/webforest.png" style="width: 55%"></img>
+                    <div class="text-center m-4" id="dataset_comparison">
+                        <img class="mb-4" src="assets/rico.png"></img>
+                        <img src="assets/webforest.png"></img>
                     </div>
                     <p>We obtain the images for each element by automatic processing of visibility control and screenshot.</p>
                     <div class="text-center m-4">
-                        <video src="assets/page2layers.mp4" controls muted autoplay loop style="width: 60%"></video>
+                        <video src="assets/page2layers.mp4" controls muted autoplay loop></video>
                     </div>
                 </div>
                 <div class="py-2">
                     <h2>Method</h2>
                     <p>We search for a layout tree where the relations between the elements are globally plausible.</p>
                     <div class="text-center m-4">
-                        <video src="assets/tree_optimization.mp4" controls muted autoplay loop style="width: 90%"></video>
+                        <video src="assets/tree_optimization.mp4" controls muted autoplay loop></video>
                     </div>
                     <p>We define the position and size of each element relatively to its parent element.</p>
                     <div class="text-center m-4">
-                        <img src="assets/parameterization.png" style="width: 70%"></img>
+                        <img src="assets/parameterization.png"></img>
                     </div>
                     <p>Our layout model consists of several energy terms that use design heuristics and the layout tree.</p>
                     <div class="text-center m-4">
-                        <img src="assets/energy_terms.png" style="width: 65%"></img>
+                        <img src="assets/energy_terms.png"></img>
                     </div>
                 </div>
                 <div class="py-2">
                     <h2>Interface</h2>
                     <p>We have developed an interactive design tool to validate our method. Please see the supplemental materials for details.</p>
                     <div class="text-center m-4">
-                        <video src="assets/interface.mp4" controls muted autoplay loop style="width: 70%"></video>
+                        <video src="assets/interface.mp4" controls muted autoplay loop></video>
                     </div>
                 </div>
                 <div class="py-2">
