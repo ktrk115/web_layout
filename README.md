@@ -77,8 +77,8 @@ If this repository helps your research, please consider citing our paper.
     journal = {Computer Graphics Forum},
     volume = {40},
     number = {7},
-    pages = {},
+    pages = {33--44},
     year = {2021},
-    doi = {}
+    doi = {10.1111/cgf.14399}
 }
 ```
